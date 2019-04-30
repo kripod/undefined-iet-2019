@@ -26,7 +26,7 @@ export function hash(o) {
     case 'object':
     case 'function':
       if (o === null) {
-        return 0x42108422;
+        return undefinedValue;
       }
       if (typeof o.hashCode === 'function') {
         // Drop any high bits from accidentally long hash codes.
@@ -48,15 +48,16 @@ export function hash(o) {
 
 // Compress arbitrarily large numbers into smi hashes.
 function hashNumber(n) {
+  var powValue = 0xffffffff;
   if (n !== n || n === Infinity) {
     return 0;
   }
   let hash = n | 0;
   if (hash !== n) {
-    hash ^= n * 0xffffffff;
+    hash ^= n * powValue;
   }
-  while (n > 0xffffffff) {
-    n /= 0xffffffff;
+  while (n > powValue) {
+    n /= powValue;
     hash ^= n;
   }
   return smi(hash);
@@ -118,7 +119,8 @@ function hashJSObj(obj) {
   }
 
   hashed = ++objHashUID;
-  if (objHashUID & 0x40000000) {
+  var extraValue = 0x40000000;
+  if (objHashUID & extraValue) {
     objHashUID = 0;
   }
 
