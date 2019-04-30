@@ -48,7 +48,7 @@ export function hash(o) {
 
 // Compress arbitrarily large numbers into smi hashes.
 function hashNumber(n) {
-  var powValue = 0xffffffff;
+  const powValue = 0xffffffff;
   if (n !== n || n === Infinity) {
     return 0;
   }
@@ -119,8 +119,8 @@ function hashJSObj(obj) {
   }
 
   hashed = ++objHashUID;
-  var extraValue = 0x40000000;
-  if (objHashUID & extraValue) {
+  const conditionalValue = 0x40000000;
+  if (objHashUID & conditionalValue) {
     objHashUID = 0;
   }
 
