@@ -8,6 +8,7 @@
 import { smi } from './Math';
 
 const defaultValueOf = Object.prototype.valueOf;
+const nullishValue = 0x42108422;
 
 export function hash(o) {
   switch (typeof o) {
@@ -25,7 +26,7 @@ export function hash(o) {
     case 'object':
     case 'function':
       if (o === null) {
-        return 0x42108422;
+        return nullishValue;
       }
       if (typeof o.hashCode === 'function') {
         // Drop any high bits from accidentally long hash codes.
@@ -36,7 +37,7 @@ export function hash(o) {
       }
       return hashJSObj(o);
     case 'undefined':
-      return 0x42108423;
+      return nullishValue;
     default:
       if (typeof o.toString === 'function') {
         return hashString(o.toString());
@@ -47,15 +48,16 @@ export function hash(o) {
 
 // Compress arbitrarily large numbers into smi hashes.
 function hashNumber(n) {
+  const powValue = 0xffffffff;
   if (n !== n || n === Infinity) {
     return 0;
   }
   let hash = n | 0;
   if (hash !== n) {
-    hash ^= n * 0xffffffff;
+    hash ^= n * powValue;
   }
-  while (n > 0xffffffff) {
-    n /= 0xffffffff;
+  while (n > powValue) {
+    n /= powValue;
     hash ^= n;
   }
   return smi(hash);
