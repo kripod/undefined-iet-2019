@@ -8,6 +8,7 @@
 import { smi } from './Math';
 
 const defaultValueOf = Object.prototype.valueOf;
+const undefinedValue = 0x42108422;
 
 export function hash(o) {
   switch (typeof o) {
@@ -36,7 +37,7 @@ export function hash(o) {
       }
       return hashJSObj(o);
     case 'undefined':
-      return 0x42108423;
+      return undefinedValue;
     default:
       if (typeof o.toString === 'function') {
         return hashString(o.toString());

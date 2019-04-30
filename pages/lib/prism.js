@@ -93,7 +93,7 @@ var Prism = (function() {
         root = root || _.languages;
         var grammar = root[inside];
 
-        if (arguments.length == 2) {
+        if (arguments.length === 2) {
           insert = arguments[1];
 
           for (var newToken in insert) {
@@ -676,7 +676,7 @@ if (Prism.languages.markup) {
       xhr.open('GET', src, true);
 
       xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
+        if (xhr.readyState === 4) {
           if (xhr.status < 400 && xhr.responseText) {
             code.textContent = xhr.responseText;
 
