@@ -119,8 +119,7 @@ function hashJSObj(obj) {
   }
 
   hashed = ++objHashUID;
-  const conditionalValue = 0x40000000;
-  if (objHashUID & conditionalValue) {
+  if (objHashUID & 0x40000000) {
     objHashUID = 0;
   }
 
