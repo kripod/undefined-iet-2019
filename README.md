@@ -1,6 +1,7 @@
 Immutable collections for JavaScript
 ====================================
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/18aa5584e64244df9df00fac27633ac2)](https://app.codacy.com/app/undefined-iet-2019/undefined-iet-2019?utm_source=github.com&utm_medium=referral&utm_content=BME-MIT-IET/undefined-iet-2019&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/BME-MIT-IET/undefined-iet-2019.svg?branch=master)](https://travis-ci.com/BME-MIT-IET/undefined-iet-2019) [![Join the chat at https://gitter.im/immutable-js/Lobby](https://badges.gitter.im/immutable-js/Lobby.svg)](https://gitter.im/immutable-js/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [Immutable][] data cannot be changed once created, leading to much simpler
