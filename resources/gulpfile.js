@@ -22,7 +22,7 @@ var mkdirp = require('mkdirp');
 var path = require('path');
 var React = require('react/addons');
 var reactTools = require('react-tools');
-var sequence = require('run-sequence');
+var sequence = require('gulp4-run-sequence');
 var size = require('gulp-size');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
@@ -42,7 +42,7 @@ gulp.task('clean', function(done) {
   return del([BUILD_DIR], { force: true });
 });
 
-gulp.task('readme', function() {
+gulp.task('readme', function(done) {
   var genMarkdownDoc = requireFresh('../pages/lib/genMarkdownDoc');
 
   var readmePath = path.join(__dirname, '../README.md');
@@ -54,9 +54,11 @@ gulp.task('readme', function() {
 
   mkdirp.sync(path.dirname(writePath));
   fs.writeFileSync(writePath, contents);
+
+  done();
 });
 
-gulp.task('typedefs', function() {
+gulp.task('typedefs', function(done) {
   var genTypeDefData = requireFresh('../pages/lib/genTypeDefData');
 
   var typeDefPath = path.join(__dirname, '../type-definitions/Immutable.d.ts');
@@ -73,6 +75,8 @@ gulp.task('typedefs', function() {
 
   mkdirp.sync(path.dirname(writePath));
   fs.writeFileSync(writePath, contents);
+
+  done();
 });
 
 gulp.task('js', gulpJS(''));
@@ -204,7 +208,7 @@ gulp.task('default', function(done) {
 });
 
 // watch files for changes and reload
-gulp.task('dev', ['default'], function() {
+gulp.task('dev', gulp.series('default', function() {
   browserSync({
     port: 8040,
     server: {
@@ -212,17 +216,17 @@ gulp.task('dev', ['default'], function() {
     },
   });
 
-  gulp.watch('../README.md', ['build']);
-  gulp.watch('../pages/lib/**/*.js', ['build']);
-  gulp.watch('../pages/src/**/*.less', ['less', 'less-docs']);
-  gulp.watch('../pages/src/src/**/*.js', ['rebuild-js']);
-  gulp.watch('../pages/src/docs/src/**/*.js', ['rebuild-js-docs']);
-  gulp.watch('../pages/src/**/*.html', ['pre-render', 'pre-render-docs']);
-  gulp.watch('../pages/src/static/**/*', ['statics', 'statics-docs']);
+  gulp.watch('../README.md', gulp.parallel('build'));
+  gulp.watch('../pages/lib/**/*.js', gulp.parallel('build'));
+  gulp.watch('../pages/src/**/*.less', gulp.parallel('less', 'less-docs'));
+  gulp.watch('../pages/src/src/**/*.js', gulp.parallel('rebuild-js'));
+  gulp.watch('../pages/src/docs/src/**/*.js', gulp.parallel('rebuild-js-docs'));
+  gulp.watch('../pages/src/**/*.html', gulp.parallel('pre-render', 'pre-render-docs'));
+  gulp.watch('../pages/src/static/**/*', gulp.parallel('statics', 'statics-docs'));
   gulp.watch('../type-definitions/*', function() {
     sequence('typedefs', 'rebuild-js-docs');
   });
-});
+}));
 
 gulp.task('rebuild-js', function(done) {
   sequence('js', ['pre-render'], function() {
