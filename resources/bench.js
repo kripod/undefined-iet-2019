@@ -7,7 +7,6 @@
 
 var Benchmark = require('benchmark');
 var child_process = require('child_process');
-var colors = require('colors');
 var fs = require('fs');
 var path = require('path');
 var vm = require('vm');
