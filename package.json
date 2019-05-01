@@ -101,7 +101,7 @@
     "rollup-plugin-strip-banner": "0.2.0",
     "through2": "2.0.3",
     "transducers-js": "^0.4.174",
-    "tslint": "5.10.0",
+    "tslint": "5.16.0",
     "typescript": "3.4.5",
     "uglify-js": "2.8.11",
     "uglify-save-license": "0.4.1",
