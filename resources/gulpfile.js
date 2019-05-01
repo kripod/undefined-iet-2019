@@ -208,25 +208,37 @@ gulp.task('default', function(done) {
 });
 
 // watch files for changes and reload
-gulp.task('dev', gulp.series('default', function() {
-  browserSync({
-    port: 8040,
-    server: {
-      baseDir: BUILD_DIR,
-    },
-  });
+gulp.task(
+  'dev',
+  gulp.series('default', function() {
+    browserSync({
+      port: 8040,
+      server: {
+        baseDir: BUILD_DIR,
+      },
+    });
 
-  gulp.watch('../README.md', gulp.parallel('build'));
-  gulp.watch('../pages/lib/**/*.js', gulp.parallel('build'));
-  gulp.watch('../pages/src/**/*.less', gulp.parallel('less', 'less-docs'));
-  gulp.watch('../pages/src/src/**/*.js', gulp.parallel('rebuild-js'));
-  gulp.watch('../pages/src/docs/src/**/*.js', gulp.parallel('rebuild-js-docs'));
-  gulp.watch('../pages/src/**/*.html', gulp.parallel('pre-render', 'pre-render-docs'));
-  gulp.watch('../pages/src/static/**/*', gulp.parallel('statics', 'statics-docs'));
-  gulp.watch('../type-definitions/*', function() {
-    sequence('typedefs', 'rebuild-js-docs');
-  });
-}));
+    gulp.watch('../README.md', gulp.parallel('build'));
+    gulp.watch('../pages/lib/**/*.js', gulp.parallel('build'));
+    gulp.watch('../pages/src/**/*.less', gulp.parallel('less', 'less-docs'));
+    gulp.watch('../pages/src/src/**/*.js', gulp.parallel('rebuild-js'));
+    gulp.watch(
+      '../pages/src/docs/src/**/*.js',
+      gulp.parallel('rebuild-js-docs')
+    );
+    gulp.watch(
+      '../pages/src/**/*.html',
+      gulp.parallel('pre-render', 'pre-render-docs')
+    );
+    gulp.watch(
+      '../pages/src/static/**/*',
+      gulp.parallel('statics', 'statics-docs')
+    );
+    gulp.watch('../type-definitions/*', function() {
+      sequence('typedefs', 'rebuild-js-docs');
+    });
+  })
+);
 
 gulp.task('rebuild-js', function(done) {
   sequence('js', ['pre-render'], function() {
