@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const path = require('path');
 const { exec } = require('child_process');
 
 require('colors');
