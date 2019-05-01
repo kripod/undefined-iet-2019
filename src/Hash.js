@@ -8,7 +8,6 @@
 import { smi } from './Math';
 
 const defaultValueOf = Object.prototype.valueOf;
-const nullishValue = 0x42108422;
 
 export function hash(o) {
   switch (typeof o) {
@@ -26,7 +25,7 @@ export function hash(o) {
     case 'object':
     case 'function':
       if (o === null) {
-        return nullishValue;
+        return 0x42108422;
       }
       if (typeof o.hashCode === 'function') {
         // Drop any high bits from accidentally long hash codes.
@@ -37,7 +36,7 @@ export function hash(o) {
       }
       return hashJSObj(o);
     case 'undefined':
-      return nullishValue;
+      return 0x42108423;
     default:
       if (typeof o.toString === 'function') {
         return hashString(o.toString());
