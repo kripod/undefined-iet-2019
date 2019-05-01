@@ -472,7 +472,8 @@ export function sliceFactory(collection, begin, end, useKeys) {
       while (skipped++ < resolvedBegin) {
         iterator.next();
       }
-      if (++iterations > sliceSize) {
+      ++iterations;
+      if (iterations > sliceSize) {
         return iteratorDone();
       }
       const step = iterator.next();
