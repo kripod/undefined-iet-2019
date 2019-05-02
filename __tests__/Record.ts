@@ -191,6 +191,7 @@ describe('Record', () => {
   });
 
   it('does not allow overwriting property names', () => {
+    /* tslint:disable:no-console */
     const realWarn = console.warn;
 
     try {
@@ -213,6 +214,7 @@ describe('Record', () => {
     } finally {
       console.warn = realWarn;
     }
+    /* tslint:enable */
   });
 
   it('can be converted to a keyed sequence', () => {
