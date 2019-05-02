@@ -36,7 +36,7 @@ function requireFresh(path) {
 var SRC_DIR = '../pages/src/';
 var BUILD_DIR = '../pages/out/';
 
-gulp.task('clean', function(done) {
+gulp.task('clean', function() {
   return del([BUILD_DIR], { force: true });
 });
 

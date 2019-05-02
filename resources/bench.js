@@ -179,8 +179,9 @@ Promise.all([
 
           if (dualRuns) {
             var prevMean = 1 / stats[1].mean;
-            var prevLow = 1 / (stats[1].mean + stats[1].deviation * 2);
-            var prevHigh = 1 / (stats[1].mean - stats[1].deviation * 2);
+
+            //var prevLow = 1 / (stats[1].mean + stats[1].deviation * 2);
+            //var prevHigh = 1 / (stats[1].mean - stats[1].deviation * 2);
 
             // console.log(
             //   (dualRuns ? '  Old: '.bold.gray : '  ') +
@@ -206,9 +207,9 @@ Promise.all([
           }
 
           var mean = 1 / stats[0].mean;
-          var low = 1 / (stats[0].mean + stats[0].deviation * 2);
-          var high = 1 / (stats[0].mean - stats[0].deviation * 2);
 
+          //var low = 1 / (stats[0].mean + stats[0].deviation * 2);
+          //var high = 1 / (stats[0].mean - stats[0].deviation * 2);
           // console.log(
           //   (dualRuns ? '  New: '.bold.gray : '  ') +
           //   (
