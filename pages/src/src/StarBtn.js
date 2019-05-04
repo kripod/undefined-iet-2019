@@ -12,7 +12,7 @@ var createReactClass = require('create-react-class');
 // https://registry.npmjs.org/immutable/latest
 // https://api.github.com/repos/facebook/immutable-js
 
-var StarBtn = React.createReactClass({
+var StarBtn = createReactClass({
   getInitialState: function() {
     return { stars: null };
   },

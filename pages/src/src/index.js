@@ -12,7 +12,7 @@ var createReactClass = require('create-react-class');
 
 require('../../lib/runkit-embed');
 
-var Index = React.createReactClass({
+var Index = createReactClass({
   render: function() {
     return (
       <div>
