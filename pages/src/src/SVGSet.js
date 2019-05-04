@@ -6,8 +6,9 @@
  */
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 
-var SVGSet = React.createClass({
+var SVGSet = React.createReactClass({
   render: function() {
     return (
       <svg className="svg" style={this.props.style} viewBox="0 0 300 42.2">

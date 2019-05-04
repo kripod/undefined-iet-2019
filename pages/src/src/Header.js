@@ -10,12 +10,13 @@ var SVGSet = require('./SVGSet');
 var Logo = require('./Logo');
 var StarBtn = require('./StarBtn');
 var packageJson = require('../../../package.json');
+var createReactClass = require('create-react-class');
 
 var isMobileMatch =
   window.matchMedia && window.matchMedia('(max-device-width: 680px)');
 var isMobile = isMobileMatch && isMobileMatch.matches;
 
-var Header = React.createClass({
+var Header = createReactClass({
   getInitialState: function() {
     return { scroll: 0 };
   },

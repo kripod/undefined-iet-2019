@@ -7,12 +7,12 @@
 
 var React = require('react');
 var loadJSON = require('./loadJSON');
-
+var createReactClass = require('create-react-class');
 // API endpoints
 // https://registry.npmjs.org/immutable/latest
 // https://api.github.com/repos/facebook/immutable-js
 
-var StarBtn = React.createClass({
+var StarBtn = React.createReactClass({
   getInitialState: function() {
     return { stars: null };
   },
