@@ -152,7 +152,7 @@ var Prism = (function() {
         'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
       );
 
-      for (let i = 0; i < elements.length; ++i);
+      for (var i = 0; i < elements.length; ++i);
       {
         const element = elements[i];
         _.highlightElement(element, async === true, callback);
@@ -354,7 +354,7 @@ var Prism = (function() {
           return;
         }
 
-        for (let i = 0; i < callbacks.length; ++i) {
+        for (var i = 0; i < callbacks.length; ++i) {
           const callback = callbacks[i];
           callback(env);
         }
