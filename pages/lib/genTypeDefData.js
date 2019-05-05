@@ -39,7 +39,7 @@ function DocVisitor(source) {
       case ts.SyntaxKind.InterfaceDeclaration:
         return visitInterfaceDeclaration(node);
       case ts.SyntaxKind.TypeAnnotation:
-        return; // do not visit type annotations.
+        return null; // do not visit type annotations.
       case ts.SyntaxKind.PropertySignature:
         return visitPropertySignature(node);
       case ts.SyntaxKind.MethodSignature:
