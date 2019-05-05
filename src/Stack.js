@@ -41,7 +41,7 @@ export class Stack extends IndexedCollection {
     let head = this._head;
     index = wrapIndex(this, index);
     while (head && index!==0) {
-      i--;
+      index--;
       head = head.next;
     }
     return head ? head.value : notSetValue;
