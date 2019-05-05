@@ -48,7 +48,6 @@ import { OrderedMap } from './OrderedMap';
 
 export class ToKeyedSequence extends KeyedSeq {
   constructor(indexed, useKeys) {
-    super(indexed, useKeys);
     this._iter = indexed;
     this._useKeys = useKeys;
     this.size = indexed.size;
@@ -94,7 +93,6 @@ ToKeyedSequence.prototype[IS_ORDERED_SYMBOL] = true;
 
 export class ToIndexedSequence extends IndexedSeq {
   constructor(iter) {
-    super(iter);
     this._iter = iter;
     this.size = iter.size;
   }
@@ -132,7 +130,6 @@ export class ToIndexedSequence extends IndexedSeq {
 
 export class ToSetSequence extends SetSeq {
   constructor(iter) {
-    super(iter);
     this._iter = iter;
     this.size = iter.size;
   }
@@ -158,7 +155,6 @@ export class ToSetSequence extends SetSeq {
 
 export class FromEntriesSequence extends KeyedSeq {
   constructor(entries) {
-    super(entries);
     this._iter = entries;
     this.size = entries.size;
   }

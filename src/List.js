@@ -37,7 +37,6 @@ export class List extends IndexedCollection {
   // @pragma Construction
 
   constructor(value) {
-    super(value);
     const empty = emptyList();
     if (value === null || value === undefined) {
       return empty;

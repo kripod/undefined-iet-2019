@@ -43,7 +43,6 @@ export class Map extends KeyedCollection {
   // @pragma Construction
 
   constructor(value) {
-    super(value);
     return value === null || value === undefined
       ? emptyMap()
       : isMap(value) && !isOrdered(value)
@@ -570,7 +569,6 @@ ValueNode.prototype.iterate = function(fn, reverse) {
 
 class MapIterator extends Iterator {
   constructor(map, type, reverse) {
-    super(map, type, reverse);
     this._type = type;
     this._reverse = reverse;
     this._stack = map._root && mapIteratorFrame(map._root);

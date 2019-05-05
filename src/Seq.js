@@ -28,7 +28,6 @@ import isArrayLike from './utils/isArrayLike';
 
 export class Seq extends Collection {
   constructor(value) {
-    super(value);
     return value === null || value === undefined
       ? emptySequence()
       : isImmutable(value)
@@ -91,7 +90,6 @@ export class Seq extends Collection {
 
 export class KeyedSeq extends Seq {
   constructor(value) {
-    super(value);
     return value === null || value === undefined
       ? emptySequence().toKeyedSeq()
       : isCollection(value)
@@ -110,7 +108,6 @@ export class KeyedSeq extends Seq {
 
 export class IndexedSeq extends Seq {
   constructor(value) {
-    super(value);
     return value === null || value === undefined
       ? emptySequence()
       : isCollection(value)
@@ -137,7 +134,6 @@ export class IndexedSeq extends Seq {
 
 export class SetSeq extends Seq {
   constructor(value) {
-    super(value);
     return (isCollection(value) && !isAssociative(value)
       ? value
       : IndexedSeq(value)
@@ -164,7 +160,6 @@ Seq.prototype[IS_SEQ_SYMBOL] = true;
 
 export class ArraySeq extends IndexedSeq {
   constructor(array) {
-    super(array);
     this._array = array;
     this.size = array.length;
   }
@@ -202,7 +197,6 @@ export class ArraySeq extends IndexedSeq {
 
 class ObjectSeq extends KeyedSeq {
   constructor(object) {
-    super(object);
     const keys = Object.keys(object);
     this._object = object;
     this._keys = keys;
@@ -252,7 +246,6 @@ ObjectSeq.prototype[IS_ORDERED_SYMBOL] = true;
 
 class CollectionSeq extends IndexedSeq {
   constructor(collection) {
-    super(collection);
     this._collection = collection;
     this.size = collection.length || collection.size;
   }
