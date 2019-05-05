@@ -95,7 +95,7 @@ renderer.code = function(code, lang, escaped) {
 
   return (
     '<code class="codeBlock">' +
-    (escaped ? code : escapeCode(code, true)) +
+    (escaped ? code : escapeCode(code)) +
     runItButton +
     '</code>'
   );
