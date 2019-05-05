@@ -43,7 +43,6 @@ export class Map extends KeyedCollection {
   // @pragma Construction
 
   constructor(value) {
-    super(value);
     return value === null || value === undefined
       ? emptyMap()
       : isMap(value) && !isOrdered(value)

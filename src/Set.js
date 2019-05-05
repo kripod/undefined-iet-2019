@@ -22,7 +22,6 @@ export class Set extends SetCollection {
   // @pragma Construction
 
   constructor(value) {
-    super(value);
     return value === null || value === undefined
       ? emptySet()
       : isSet(value) && !isOrdered(value)
