@@ -164,6 +164,7 @@ Seq.prototype[IS_SEQ_SYMBOL] = true;
 
 export class ArraySeq extends IndexedSeq {
   constructor(array) {
+    super(array);
     this._array = array;
     this.size = array.length;
   }
@@ -201,6 +202,7 @@ export class ArraySeq extends IndexedSeq {
 
 class ObjectSeq extends KeyedSeq {
   constructor(object) {
+    super(object);
     const keys = Object.keys(object);
     this._object = object;
     this._keys = keys;
@@ -250,6 +252,7 @@ ObjectSeq.prototype[IS_ORDERED_SYMBOL] = true;
 
 class CollectionSeq extends IndexedSeq {
   constructor(collection) {
+    super(collection);
     this._collection = collection;
     this.size = collection.length || collection.size;
   }
