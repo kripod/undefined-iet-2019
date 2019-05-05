@@ -19,21 +19,18 @@ export class Collection {
 
 export class KeyedCollection extends Collection {
   constructor(value) {
-    super(value);
     return isKeyed(value) ? value : KeyedSeq(value);
   }
 }
 
 export class IndexedCollection extends Collection {
   constructor(value) {
-    super(value);
     return isIndexed(value) ? value : IndexedSeq(value);
   }
 }
 
 export class SetCollection extends Collection {
   constructor(value) {
-    super(value);
     return isCollection(value) && !isAssociative(value) ? value : SetSeq(value);
   }
 }
