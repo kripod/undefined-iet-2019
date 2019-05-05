@@ -40,7 +40,7 @@ export class Stack extends IndexedCollection {
   get(index, notSetValue) {
     let head = this._head;
     index = wrapIndex(this, index);
-    while (head && index!==0) {
+    while (head && index !== 0) {
       index--;
       head = head.next;
     }
@@ -133,7 +133,7 @@ export class Stack extends IndexedCollection {
     }
     const newSize = this.size - resolvedBegin;
     let head = this._head;
-    while (resolvedBegin !==0) {
+    while (resolvedBegin !== 0) {
       resolvedBegin--;
       head = head.next;
     }
