@@ -109,7 +109,8 @@ export class Range extends IndexedSeq {
     let value = reverse ? this._start + (size - 1) * step : this._start;
     let i = 0;
     while (i !== size) {
-      if (fn(value, reverse ? size - ++i : i++, this) === false) {
+      let start = reverse ? size - ++i : i++;
+      if (fn(value, start, this) === false) {
         break;
       }
       value += reverse ? -step : step;

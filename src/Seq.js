@@ -258,11 +258,12 @@ class CollectionSeq extends IndexedSeq {
     const iterator = getIterator(collection);
     let iterations = 0;
     if (isIterator(iterator)) {
-      let step;
-      while (!(step = iterator.next()).done) {
+      let step = iterator.next();
+      while (!(step).done) {
         if (fn(step.value, iterations++, this) === false) {
           break;
         }
+        step = iterator.next();
       }
     }
     return iterations;
