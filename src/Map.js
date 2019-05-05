@@ -570,7 +570,6 @@ ValueNode.prototype.iterate = function(fn, reverse) {
 
 class MapIterator extends Iterator {
   constructor(map, type, reverse) {
-    super(map, type, reverse);
     this._type = type;
     this._reverse = reverse;
     this._stack = map._root && mapIteratorFrame(map._root);

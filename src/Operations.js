@@ -48,7 +48,6 @@ import { OrderedMap } from './OrderedMap';
 
 export class ToKeyedSequence extends KeyedSeq {
   constructor(indexed, useKeys) {
-    super(indexed, useKeys);
     this._iter = indexed;
     this._useKeys = useKeys;
     this.size = indexed.size;
