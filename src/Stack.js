@@ -40,8 +40,8 @@ export class Stack extends IndexedCollection {
   get(index, notSetValue) {
     let head = this._head;
     index = wrapIndex(this, index);
-    while (head && index !== 0) {
-      index--;
+    while (head && index > 0) {
+      --index;
       head = head.next;
     }
     return head ? head.value : notSetValue;
@@ -133,8 +133,8 @@ export class Stack extends IndexedCollection {
     }
     const newSize = this.size - resolvedBegin;
     let head = this._head;
-    while (resolvedBegin !== 0) {
-      resolvedBegin--;
+    while (resolvedBegin > 0) {
+      --resolvedBegin;
       head = head.next;
     }
     if (this.__ownerID) {
