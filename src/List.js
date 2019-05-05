@@ -200,26 +200,20 @@ export class List extends IndexedCollection {
     const values = iterateList(this, reverse);
     return new Iterator(() => {
       const value = values();
-      if(value === DONE){
-        return iteratorDone();
-      }
-      else{
-        let k = reverse ? --index : index++;
-        return iteratorValue(type, k, value);
-      }
+      return value === DONE
+        ? iteratorDone()
+        : iteratorValue(type, reverse ? --index : index++, value);
     });
   }
 
   __iterate(fn, reverse) {
     let index = reverse ? this.size : 0;
     const values = iterateList(this, reverse);
-    let value = values();    
-    
-    while (value !== DONE) {
+    let value;
+    while ((value = values()) !== DONE) {
       if (fn(value, reverse ? --index : index++, this) === false) {
         break;
       }
-      value = values();
     }
     return index;
   }

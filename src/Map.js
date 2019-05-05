@@ -478,12 +478,9 @@ class HashCollisionNode {
 
     if (exists) {
       if (removed) {
-        if(idx === len - 1){
-          newEntries.pop()
-        }
-        else{
-          newEntries[idx] = newEntries.pop();
-        }
+        idx === len - 1
+          ? newEntries.pop()
+          : (newEntries[idx] = newEntries.pop());
       } else {
         newEntries[idx] = [key, value];
       }
