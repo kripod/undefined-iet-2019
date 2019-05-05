@@ -8,10 +8,11 @@
 var React = require('react');
 var Header = require('./Header');
 var readme = require('../../generated/readme.json');
+var createReactClass = require('create-react-class');
 
 require('../../lib/runkit-embed');
 
-var Index = React.createClass({
+var Index = createReactClass({
   render: function() {
     return (
       <div>

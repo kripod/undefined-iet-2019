@@ -6,8 +6,9 @@
  */
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 
-var Logo = React.createClass({
+var Logo = createReactClass({
   shouldComponentUpdate: function(nextProps) {
     return nextProps.opacity !== this.props.opacity;
   },
