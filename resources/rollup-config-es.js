@@ -24,7 +24,7 @@ export default {
     name: 'Immutable',
     file: path.join(DIST_DIR, 'immutable.es.js'),
     format: 'es',
-    sourcemap: false,
+    sourcemap: 'inline',
   },
   plugins: [commonjs(), json(), stripBanner(), buble()],
 };
