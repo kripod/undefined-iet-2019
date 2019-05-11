@@ -27,7 +27,7 @@ export default {
     exports: 'named',
     file: path.join(DIST_DIR, 'immutable.js'),
     format: 'umd',
-    sourcemap: false,
+    sourcemap: 'inline',
   },
   plugins: [
     commonjs(),
