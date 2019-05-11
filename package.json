@@ -55,7 +55,9 @@
     "testRegex": "/__tests__/.*\\.(ts|js)$",
     "unmockedModulePathPatterns": [
       "./node_modules/react"
-    ]
+    ],
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   },
   "devDependencies": {
     "benchmark": "2.1.4",

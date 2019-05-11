@@ -3,7 +3,10 @@ language: node_js
 node_js: 8
 
 cache: yarn
-script: npm run test:travis
+install: yarn global add codecov
+script:
+  - yarn test:travis
+  - codecov
 
 env:
   global:
