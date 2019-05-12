@@ -892,4 +892,46 @@ describe('List', () => {
       }
     });
   });
+
+  it('should skip until the condition not met', () => {
+    const list = List.of('one', 'two', 'three', 'four', 'five', 'six');
+    expect(list.skipUntil(x => x.includes('ee')).toJS()).toEqual([
+      'three',
+      'four',
+      'five',
+      'six',
+    ]);
+  });
+
+  it('should modify the correct item at index', () => {
+    const list = List.of('one', 'two', 'three', 'four', 'five', 'six');
+    const list2 = list.update(0, () => {
+      return 'sixtysix';
+    });
+    expect(list2.toJS()).toEqual([
+      'sixtysix',
+      'two',
+      'three',
+      'four',
+      'five',
+      'six',
+    ]);
+  });
+
+  it('should return correct last index based on predicate', () => {
+    const list = List.of('one', 'two', 'three', 'four', 'five', 'six');
+    expect(list.findLastIndex(x => x.includes('ee'))).toEqual(2);
+  });
+
+  it('should skip the elements while the condition is met', () => {
+    const list = List(['dog', 'frog', 'cat', 'hat', 'god']);
+    const list1 = list.skipWhile(x => x.match(/g/));
+    expect(list1.toJS()).toEqual(['cat', 'hat', 'god']);
+  });
+
+  it('should skip the elements until the condition is not met', () => {
+    const list = List(['dog', 'frog', 'cat', 'hat', 'god']);
+    const list1 = list.skipUntil(x => x.match(/h/));
+    expect(list1.toJS()).toEqual(['hat', 'god']);
+  });
 });
