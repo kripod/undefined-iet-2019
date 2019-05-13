@@ -62,6 +62,18 @@ describe('hash', () => {
     expect(hash(new ClsB())).not.toBe(2 ** 31 - 1);
   });
 
+  it('uses primitive value of an object if available', () => {
+    expect.hasAssertions(); // Ensure that `valueOf` gets called
+    const objA = {};
+    class ClsA {
+      valueOf() {
+        expect(objA).toBeDefined(); // Dummy assertion
+        return objA;
+      }
+    }
+    expect(hash(new ClsA())).toBe(hash(new ClsA()));
+  });
+
   const genValue = gen.oneOf([gen.string, gen.int]);
 
   check.it('generates unsigned 31-bit integers', [genValue], value => {
