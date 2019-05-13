@@ -61,4 +61,9 @@ describe('Repeat', () => {
     const v2 = Repeat('wtf', 3);
     expect(v.equals(v2)).toBe(true);
   });
+
+  it('check if string format of Repeat is ok', () => {
+    const v = Repeat('wtf',3);
+    expect(v.toString()).toEqual("Repeat [ wtf 3 times ]");
+  });
 });

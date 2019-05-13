@@ -11,6 +11,7 @@ import * as jasmineCheck from 'jasmine-check';
 jasmineCheck.install();
 
 import { is, List, Map, Range, Record, Seq } from '../';
+import { stringLiteral } from '@babel/types';
 
 describe('Map', () => {
   it('converts from object', () => {
@@ -450,6 +451,16 @@ describe('Map', () => {
     expect(m.size).toBe(2);
     expect(m.get(a)).toBe('FizBuz');
     expect(m.get(b)).toBe('FooBar');
+  });
+
+  it ('check if Map is truly empty', () => {
+    const emptyMap= Map<string, string>();
+    expect(emptyMap.size).toBe(0);
+  });
+
+  it ('check if clearing Map works when empty', () => {
+    const abc = Map<string, string>();
+    expect(abc.clear().size).toBe(0);
   });
 
   it('mergeDeep with tuple Symbol keys', () => {

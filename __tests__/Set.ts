@@ -318,6 +318,11 @@ describe('Set', () => {
     expect(set.count(x => true)).toEqual(5);
   });
 
+  it('can clear set', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.clear().size).toBe(0);
+  });
+
   describe('"size" should correctly reflect the number of elements in a Set', () => {
     describe('deduplicating custom classes that invoke fromJS() as part of equality check', () => {
       class Entity {
