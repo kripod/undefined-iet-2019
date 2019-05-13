@@ -87,7 +87,7 @@ describe('OrderedMap', () => {
   });
 
   it ('check if OrderedMap is truly empty', () => {
-    const emptyMap= OrderedMap<string, string>();
+    const emptyMap = OrderedMap<string, string>();
     expect(emptyMap.size).toBe(0);
   });
 

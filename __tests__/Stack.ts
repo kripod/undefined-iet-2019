@@ -203,7 +203,7 @@ describe('Stack', () => {
   });
 
   it ('check if clearing Stack works with elements', () => {
-    let abc = Stack(['a', 'b', 'c']);
+    const abc = Stack(['a', 'b', 'c']);
     expect(abc.clear().size).toBe(0);
   });
 
@@ -212,8 +212,8 @@ describe('Stack', () => {
     expect(abc.clear().size).toBe(0);
   });
 
-  it ('make a string from our stack', ()=>{
-    const myStack = Stack(['a','b', 'c']);
+  it ('make a string from our stack', () => {
+    const myStack = Stack(['a', 'b', 'c']);
     expect(myStack.toString()).toEqual('Stack [ "a", "b", "c" ]');
   });
 

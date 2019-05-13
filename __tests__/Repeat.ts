@@ -63,7 +63,7 @@ describe('Repeat', () => {
   });
 
   it('check if string format of Repeat is ok', () => {
-    const v = Repeat('wtf',3);
+    const v = Repeat('wtf', 3);
     expect(v.toString()).toEqual("Repeat [ wtf 3 times ]");
   });
 });

@@ -11,7 +11,6 @@ import * as jasmineCheck from 'jasmine-check';
 jasmineCheck.install();
 
 import { is, List, Map, Range, Record, Seq } from '../';
-import { stringLiteral } from '@babel/types';
 
 describe('Map', () => {
   it('converts from object', () => {
@@ -454,7 +453,7 @@ describe('Map', () => {
   });
 
   it ('check if Map is truly empty', () => {
-    const emptyMap= Map<string, string>();
+    const emptyMap = Map<string, string>();
     expect(emptyMap.size).toBe(0);
   });
 

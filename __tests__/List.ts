@@ -11,7 +11,6 @@ import * as jasmineCheck from 'jasmine-check';
 jasmineCheck.install();
 
 import { fromJS, List, Map, Range, Seq, Set } from '../';
-import { numberLiteralTypeAnnotation } from '@babel/types';
 
 function arrayOfSize(s) {
   const a = new Array(s);
@@ -381,7 +380,7 @@ describe('List', () => {
   });
 
   it('remove method without index', () => {
-    let v = List.of('a', 'b', 'c');
+    const v = List.of('a', 'b', 'c');
     expect(v.remove(4)).toBe(v);
   });
 

@@ -115,7 +115,7 @@ describe('Seq', () => {
   });
 
   it('check if Seq string format is ok', () => {
-    const list = Seq([1,2,3]);
+    const list = Seq([1, 2, 3]);
     expect(list.toString()).toEqual("Seq [ 1, 2, 3 ]");
   });
 

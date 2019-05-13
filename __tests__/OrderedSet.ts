@@ -59,8 +59,8 @@ describe('OrderedSet', () => {
     expect(s2.union(s1).toArray()).toEqual(['C', 'B', 'D', 'A']);
   });
 
-  it ('make a string from our ordered set', ()=>{
-    const mySet = OrderedSet.of('a','b', 'c');
+  it ('make a string from our ordered set', () => {
+    const mySet = OrderedSet.of('a', 'b', 'c');
     expect(mySet.toString()).toEqual('OrderedSet { "a", "b", "c" }');
   });
 
