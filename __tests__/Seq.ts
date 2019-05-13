@@ -114,7 +114,7 @@ describe('Seq', () => {
     expect(list.take(NaN).toJS()).toEqual([]);
   });
 
-  it('check if Seq string format is ok', () => {
+  it('can be stringified', () => {
     const list = Seq([1, 2, 3]);
     expect(list.toString()).toEqual('Seq [ 1, 2, 3 ]');
   });

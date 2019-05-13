@@ -318,7 +318,7 @@ describe('Set', () => {
     expect(set.count(x => true)).toEqual(5);
   });
 
-  it('can clear set', () => {
+  it('can be cleared', () => {
     const set = Set([1, 2, 3, 4, 5]);
     expect(set.clear().size).toBe(0);
   });

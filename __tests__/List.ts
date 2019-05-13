@@ -379,7 +379,7 @@ describe('List', () => {
     expect(v.last()).toBe('X');
   });
 
-  it('remove method without index', () => {
+  it('does not change when remove is called with an index out of bounds', () => {
     const v = List.of('a', 'b', 'c');
     expect(v.remove(4)).toBe(v);
   });

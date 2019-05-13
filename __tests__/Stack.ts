@@ -197,17 +197,17 @@ describe('Stack', () => {
     expect(s.indexOf('d')).toBe(-1);
   });
 
-  it('check if Stack is truly empty', () => {
+  it('size equals zero when empty', () => {
     const emptyStack = Stack([]);
     expect(emptyStack.size).toBe(0);
   });
 
-  it('check if clearing Stack works with elements', () => {
+  it('clears correctly when filled', () => {
     const abc = Stack(['a', 'b', 'c']);
     expect(abc.clear().size).toBe(0);
   });
 
-  it('check if clearing Stack works when empty', () => {
+  it('clears correctly when empty', () => {
     const abc = Stack([]);
     expect(abc.clear().size).toBe(0);
   });
