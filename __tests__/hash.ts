@@ -47,6 +47,21 @@ describe('hash', () => {
     expect(hash(funA)).not.toBe(hash(funB));
   });
 
+  it('drops any high bits from accidentally long hash codes', () => {
+    class ClsA {
+      hashCode() {
+        return 2 ** 31;
+      }
+    }
+    class ClsB {
+      hashCode() {
+        return 2 ** 31 - 1;
+      }
+    }
+    expect(hash(new ClsA())).toBe(-(2 ** 30));
+    expect(hash(new ClsB())).not.toBe(2 ** 31 - 1);
+  });
+
   const genValue = gen.oneOf([gen.string, gen.int]);
 
   check.it('generates unsigned 31-bit integers', [genValue], value => {
