@@ -74,6 +74,11 @@ describe('hash', () => {
     expect(hash(new ClsA())).toBe(hash(new ClsA()));
   });
 
+  it('compresses arbitrarily large numbers into smi hashes', () => {
+    expect(hash(Number.POSITIVE_INFINITY)).toBe(0);
+    expect(hash(0xffffffff + 1)).toBe(1);
+  });
+
   const genValue = gen.oneOf([gen.string, gen.int]);
 
   check.it('generates unsigned 31-bit integers', [genValue], value => {
