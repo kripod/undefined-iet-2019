@@ -86,12 +86,12 @@ describe('OrderedMap', () => {
     expect(m1.equals(m2.reverse())).toBe(true);
   });
 
-  it ('check if OrderedMap is truly empty', () => {
+  it('check if OrderedMap is truly empty', () => {
     const emptyMap = OrderedMap<string, string>();
     expect(emptyMap.size).toBe(0);
   });
 
-  it ('check if clearing OrderedMap works when empty', () => {
+  it('check if clearing OrderedMap works when empty', () => {
     const abc = OrderedMap<string, string>();
     expect(abc.clear().size).toBe(0);
   });

@@ -192,17 +192,17 @@ describe('Range', () => {
 
   it('String format of empty range structure', () => {
     const r = Range(0, 0, 5);
-    expect(r.toString()).toEqual("Range []");
+    expect(r.toString()).toEqual('Range []');
   });
 
   it('String format of range structure with step 1', () => {
     const r = Range(10, 15, 1);
-    expect(r.toString()).toEqual("Range [ 10...15 ]");
+    expect(r.toString()).toEqual('Range [ 10...15 ]');
   });
 
   it('String format of range structure with multiple step', () => {
     const r = Range(10, 20, 2);
-    expect(r.toString()).toEqual("Range [ 10...20 by 2 ]");
+    expect(r.toString()).toEqual('Range [ 10...20 by 2 ]');
   });
 
   it('check last index of range', () => {

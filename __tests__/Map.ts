@@ -452,12 +452,12 @@ describe('Map', () => {
     expect(m.get(b)).toBe('FooBar');
   });
 
-  it ('check if Map is truly empty', () => {
+  it('check if Map is truly empty', () => {
     const emptyMap = Map<string, string>();
     expect(emptyMap.size).toBe(0);
   });
 
-  it ('check if clearing Map works when empty', () => {
+  it('check if clearing Map works when empty', () => {
     const abc = Map<string, string>();
     expect(abc.clear().size).toBe(0);
   });

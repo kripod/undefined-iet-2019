@@ -197,22 +197,22 @@ describe('Stack', () => {
     expect(s.indexOf('d')).toBe(-1);
   });
 
-  it ('check if Stack is truly empty', () => {
+  it('check if Stack is truly empty', () => {
     const emptyStack = Stack([]);
     expect(emptyStack.size).toBe(0);
   });
 
-  it ('check if clearing Stack works with elements', () => {
+  it('check if clearing Stack works with elements', () => {
     const abc = Stack(['a', 'b', 'c']);
     expect(abc.clear().size).toBe(0);
   });
 
-  it ('check if clearing Stack works when empty', () => {
+  it('check if clearing Stack works when empty', () => {
     const abc = Stack([]);
     expect(abc.clear().size).toBe(0);
   });
 
-  it ('make a string from our stack', () => {
+  it('make a string from our stack', () => {
     const myStack = Stack(['a', 'b', 'c']);
     expect(myStack.toString()).toEqual('Stack [ "a", "b", "c" ]');
   });
