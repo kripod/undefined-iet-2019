@@ -109,4 +109,28 @@ describe('KeyedSeq', () => {
         .toArray()
     ).toEqual([[14, 85], [13, 86], [12, 87], [11, 88], [10, 89]]);
   });
+
+  it('should return correct last item based on predicate', () => {
+    const seq = Range(0, 5);
+    const keyedSeq = seq.toKeyedSeq();
+    expect(keyedSeq.findLast(x => x % 2 === 0)).toBe(4);
+  });
+
+  it('should return correct last key based on predicate', () => {
+    const seq = Range(0, 5);
+    const keyedSeq = seq.toKeyedSeq();
+    expect(keyedSeq.findLastKey(x => x % 2 === 0)).toBe(4);
+  });
+
+  it('should return correct first item', () => {
+    const seq = Range(0, 5);
+    const keyedSeq = seq.toKeyedSeq();
+    expect(keyedSeq.first()).toBe(0);
+  });
+
+  it('should return correct last item', () => {
+    const seq = Range(0, 5);
+    const keyedSeq = seq.toKeyedSeq();
+    expect(keyedSeq.last()).toBe(4);
+  });
 });
