@@ -114,6 +114,11 @@ describe('Seq', () => {
     expect(list.take(NaN).toJS()).toEqual([]);
   });
 
+  it('can be stringified', () => {
+    const list = Seq([1, 2, 3]);
+    expect(list.toString()).toEqual('Seq [ 1, 2, 3 ]');
+  });
+
   it('Converts deeply toJS after converting to entries', () => {
     const list = Seq([Seq([1, 2]), Seq({ a: 'z' })]);
     expect(list.entrySeq().toJS()).toEqual([[0, [1, 2]], [1, { a: 'z' }]]);

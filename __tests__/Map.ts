@@ -452,6 +452,16 @@ describe('Map', () => {
     expect(m.get(b)).toBe('FooBar');
   });
 
+  it('size equals zero when empty', () => {
+    const emptyMap = Map<string, string>();
+    expect(emptyMap.size).toBe(0);
+  });
+
+  it('clears correctly when empty', () => {
+    const abc = Map<string, string>();
+    expect(abc.clear().size).toBe(0);
+  });
+
   it('mergeDeep with tuple Symbol keys', () => {
     const a = Symbol('a');
     const b = Symbol('b');

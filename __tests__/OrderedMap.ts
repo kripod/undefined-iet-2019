@@ -86,6 +86,16 @@ describe('OrderedMap', () => {
     expect(m1.equals(m2.reverse())).toBe(true);
   });
 
+  it('size equals zero when empty', () => {
+    const emptyMap = OrderedMap<string, string>();
+    expect(emptyMap.size).toBe(0);
+  });
+
+  it('clears correctly when empty', () => {
+    const abc = OrderedMap<string, string>();
+    expect(abc.clear().size).toBe(0);
+  });
+
   it('respects order when merging', () => {
     const m1 = OrderedMap({ A: 'apple', B: 'banana', C: 'coconut' });
     const m2 = OrderedMap({ C: 'chocolate', B: 'butter', D: 'donut' });

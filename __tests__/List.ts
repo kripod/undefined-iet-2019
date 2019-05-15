@@ -379,6 +379,11 @@ describe('List', () => {
     expect(v.last()).toBe('X');
   });
 
+  it('does not change when remove is called with an index out of bounds', () => {
+    const v = List.of('a', 'b', 'c');
+    expect(v.remove(4)).toBe(v);
+  });
+
   check.it(
     'pop removes the highest index, just like array',
     { maxSize: 2000 },

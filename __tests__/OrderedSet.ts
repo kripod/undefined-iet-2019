@@ -59,6 +59,11 @@ describe('OrderedSet', () => {
     expect(s2.union(s1).toArray()).toEqual(['C', 'B', 'D', 'A']);
   });
 
+  it('can be stringified', () => {
+    const mySet = OrderedSet.of('a', 'b', 'c');
+    expect(mySet.toString()).toEqual('OrderedSet { "a", "b", "c" }');
+  });
+
   it('can be zipped', () => {
     const s1 = OrderedSet.of('A', 'B', 'C');
     const s2 = OrderedSet.of('C', 'B', 'D');
