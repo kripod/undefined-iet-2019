@@ -229,7 +229,7 @@ describe('Set', () => {
   it('update value from set', () => {
     const s1 = Set([3, 2, 1]);
     function sum(collection) {
-      return collection.reduce((sum, x) => sum + x, 0)
+      return collection.reduce((mySum, x) => mySum + x, 0);
     }
     s1.map(x => x + 1).filter(x => x % 2 === 0).update(sum);
     expect(sum(s1)).toBe(6);
@@ -255,10 +255,9 @@ describe('Set', () => {
 
   it('flatten set', () => {
     const s1 = Set(['Hello', 'World']);
-    expect(s1.flatMap(word => word.split('')).toString()).toMatch("Set { \"H\", \"e\", \"l\", \"o\", \"W\", \"r\", \"d\" }");
+    expect(s1.flatMap(word => word.split('')).toString())
+      .toMatch("Set { \"H\", \"e\", \"l\", \"o\", \"W\", \"r\", \"d\" }");
   });
-
-
 
   it('deletes down to empty set', () => {
     const s = Set.of('A').remove('A');
@@ -321,10 +320,10 @@ describe('Set', () => {
 
   describe('accepts Symbol as entry #579', () => {
     if (typeof Symbol !== 'function') {
-      Symbol = function (key) {
+      Symbol = function(key) {
         return { key, __proto__: Symbol };
       };
-      Symbol.toString = function () {
+      Symbol.toString = function() {
         return 'Symbol(' + (this.key || '') + ')';
       };
     }
