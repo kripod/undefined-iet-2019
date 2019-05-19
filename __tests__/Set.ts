@@ -231,7 +231,9 @@ describe('Set', () => {
     function sum(collection) {
       return collection.reduce((mySum, x) => mySum + x, 0);
     }
-    s1.map(x => x + 1).filter(x => x % 2 === 0).update(sum);
+    s1.map(x => x + 1)
+      .filter(x => x % 2 === 0)
+      .update(sum);
     expect(sum(s1)).toBe(6);
   });
 
@@ -255,8 +257,9 @@ describe('Set', () => {
 
   it('flatten set', () => {
     const s1 = Set(['Hello', 'World']);
-    expect(s1.flatMap(word => word.split('')).toString())
-      .toMatch("Set { \"H\", \"e\", \"l\", \"o\", \"W\", \"r\", \"d\" }");
+    expect(s1.flatMap(word => word.split('')).toString()).toMatch(
+      'Set { "H", "e", "l", "o", "W", "r", "d" }'
+    );
   });
 
   it('deletes down to empty set', () => {
