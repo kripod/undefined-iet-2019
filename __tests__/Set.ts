@@ -8,7 +8,7 @@
 ///<reference path='../resources/jest.d.ts'/>
 
 declare var Symbol: any;
-import { fromJS, is, List, Map, OrderedSet, Seq, Set } from '../';
+import { fromJS, is, List, Map, OrderedSet, Seq, Set, OrderedMap } from '../';
 
 describe('Set', () => {
   it('accepts array of values', () => {
@@ -239,6 +239,35 @@ describe('Set', () => {
     // Map and Set are not the same (keyed vs unkeyed)
     const v1 = Map({ A: 'A', C: 'C', B: 'B' });
     expect(is(s1, v1)).toBe(false);
+  });
+
+  it('group even and odd numbers', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const grpby = set.groupBy(x => x % 2 === 0).toMap().toArray().toString();
+    expect(grpby).toEqual(
+      Map({ false: Set.of(1,3,5,7,9),  true: Set.of(2,4,6,8,10)}).toArray().toString()
+    );
+  });
+
+  it('can use multiple add in a withMutation', () => {
+    const set1 = Set();
+    const set2 = set1.withMutations(set => set.add(1).add(2).add(3));
+    expect(set1.size === 0);
+    expect(set2.size === 3);
+    expect(set2).toEqual(Set.of(1,2,3));
+  });
+
+  it('ordering when converts to Seq', () => {
+    const set = Set.of(10,2,9,4,8,6,7,5,1,3);
+    const seqFromSet = set.toSeq().toArray();
+    expect(seqFromSet).toEqual(Seq([1,2,3,4,5,6,7,8,9,10]).toArray());
+  });
+
+  it('add key in toMap conversion', () => {
+    const set = Set.of('apple', 'banana', 'carrot');
+    const map = Map({apple: 'apple', banana: 'banana', carrot: 'carrot'});
+    const mapFromSet = set.toMap();
+    expect(mapFromSet).toEqual(map);
   });
 
   it('can use union in a withMutation', () => {
