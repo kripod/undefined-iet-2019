@@ -345,7 +345,7 @@ describe('Set', () => {
   });
 
   it('reduce a Set from right', () => {
-    const set = Set.of('t', 'a', 'e', 'r', 'g')
+    const set = Set.of('t', 'a', 'e', 'r', 'g');
     const reducedSet = set.reduceRight((accumulator, currentValue) => {
       return accumulator + currentValue;
     }, '');
@@ -360,7 +360,7 @@ describe('Set', () => {
 
   it('not all elements are even', () => {
     const set = Set.of(0, 1, 2, 4, 6, 8, 10);
-    const isAllEven = set.every(x => x % 2 === 0)
+    const isAllEven = set.every(x => x % 2 === 0);
     expect(isAllEven).toEqual(false);
   });
 
@@ -418,10 +418,10 @@ describe('Set', () => {
 
   describe('accepts Symbol as entry #579', () => {
     if (typeof Symbol !== 'function') {
-      Symbol = function (key) {
+      Symbol = function(key) {
         return { key, __proto__: Symbol };
       };
-      Symbol.toString = function () {
+      Symbol.toString = function() {
         return 'Symbol(' + (this.key || '') + ')';
       };
     }
