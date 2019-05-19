@@ -354,13 +354,13 @@ describe('Set', () => {
 
   it('every elements are even', () => {
     const set = Set.of(0, 2, 4, 6, 8, 10);
-    let isAllEven = set.every(x => x % 2 === 0)
+    const isAllEven = set.every(x => x % 2 === 0)
     expect(isAllEven).toEqual(true);
   });
 
   it('not all elements are even', () => {
     const set = Set.of(0, 1, 2, 4, 6, 8, 10);
-    let isAllEven = set.every(x => x % 2 === 0)
+    const isAllEven = set.every(x => x % 2 === 0)
     expect(isAllEven).toEqual(false);
   });
 
