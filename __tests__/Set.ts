@@ -198,6 +198,70 @@ describe('Set', () => {
     expect(s5.has('b')).toBe(false);
   });
 
+  it('is persistent to subtracts', () => {
+    const s1 = Set.of('a', 'b', 'c');
+    const s2 = s1.subtract(['a', 'c']);
+    expect(s2.has('b')).toBe(true);
+    expect(s2.has('a')).toBe(false);
+    expect(s2.has('c')).toBe(false);
+  });
+
+  it('sort elements in ascending order with sort', () => {
+    const s1 = Set([3, 2, 1]);
+    const s2 = s1.sort();
+    expect(OrderedSet.isOrderedSet(s1)).toBe(false);
+    expect(OrderedSet.isOrderedSet(s2)).toBe(true);
+    expect(s2.toArray()).toEqual([1, 2, 3]);
+  });
+
+  it('sort elements in alphabetical order with sortBy', () => {
+    const s1 = Set(['Mouse', 'Cat', 'Dog']);
+    const s2 = s1.sortBy(a => a.toString());
+    expect(s2.toArray()).toEqual(['Cat', 'Dog', 'Mouse']);
+  });
+
+  it('reverse set', () => {
+    const s1 = Set([3, 2, 1]);
+    const s2 = s1.reverse();
+    expect(s2.toArray()).toEqual([1, 2, 3]);
+  });
+
+  it('update value from set', () => {
+    const s1 = Set([3, 2, 1]);
+    function sum(collection) {
+      return collection.reduce((mySum, x) => mySum + x, 0);
+    }
+    s1.map(x => x + 1)
+      .filter(x => x % 2 === 0)
+      .update(sum);
+    expect(sum(s1)).toBe(6);
+  });
+
+  it('concatenates two sets', () => {
+    const s1 = Set([1, 2, 3]);
+    const s2 = Set([4, 5, 6]);
+    expect(s1.concat(s2).toArray()).toEqual([1, 2, 3, 4, 5, 6]);
+  });
+
+  it('store only odd values from set with filter', () => {
+    const s1 = Set([1, 2, 3]);
+    const s2 = s1.filter(x => x % 2 === 1);
+    expect(s2.toArray()).toEqual([1, 3]);
+  });
+
+  it('store only even values from set with no filterNot', () => {
+    const s1 = Set([1, 2, 3]);
+    const s2 = s1.filterNot(x => x % 2 === 1);
+    expect(s2.toArray()).toEqual([2]);
+  });
+
+  it('flatten set', () => {
+    const s1 = Set(['Hello', 'World']);
+    expect(s1.flatMap(word => word.split('')).toString()).toMatch(
+      'Set { "H", "e", "l", "o", "W", "r", "d" }'
+    );
+  });
+
   it('deletes down to empty set', () => {
     const s = Set.of('A').remove('A');
     expect(s).toBe(Set());
