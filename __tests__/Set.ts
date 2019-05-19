@@ -336,6 +336,70 @@ describe('Set', () => {
     expect(newSet).toEqual(Set.of(1,2,3,4,5,6,7,8,9));
   });
 
+  it('reduce a Set from left', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const reducedSet = set.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, 0);
+    expect(reducedSet).toEqual(55);
+  });
+
+  it('reduce a Set from right', () => {
+    const set = Set.of('t','a','e','r','g')
+    const reducedSet = set.reduceRight((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, '');
+    expect(reducedSet).toEqual('great');
+  });
+
+  it('every elements are even', () => {
+    const set = Set.of(0,2,4,6,8,10);
+    let isAllEven = set.every(x => x%2 === 0)
+    expect(isAllEven).toEqual(true);
+  });
+
+  it('not all elements are even', () => {
+    const set = Set.of(0,1,2,4,6,8,10);
+    let isAllEven = set.every(x => x%2 === 0)
+    expect(isAllEven).toEqual(false);
+  });
+
+  it('some elements are odd', () => {
+    const set = Set.of(0,1,2,4,6,8,10);
+    const isAllEven = set.some(x => x%2 === 1)
+    expect(isAllEven).toEqual(true);
+  });
+
+  it('join Set\'s values as a string (default separator)' , () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const output = set.join();
+    expect(output).toEqual('1,2,3,4,5,6,7,8,9,10');
+  });
+
+  it('join Set\'s values as a string ( ; separator)' , () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const output = set.join(';');
+    expect(output).toEqual('1;2;3;4;5;6;7;8;9;10');
+  });
+
+  it('test an empty Set' , () => {
+    const set = Set();
+    const isEmpty = set.isEmpty();
+    expect(isEmpty).toEqual(true);
+  });
+
+  it('count elements of a Set' , () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const count = set.count();
+    expect(count).toEqual(10);
+  });
+
+  it('count odd elements of a Set' , () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const count = set.countBy(x => x%2 === 1).toArray().toString();
+    expect(count).toEqual(Map({true: 5,  false: 5}).toArray().toString());
+  });
+
   it('can use union in a withMutation', () => {
     const js = Set()
       .withMutations(set => {
