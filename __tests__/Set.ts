@@ -270,6 +270,72 @@ describe('Set', () => {
     expect(mapFromSet).toEqual(map);
   });
 
+  it('slice a portion from a Set', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const portion = set.slice(1,7);
+    expect(portion).toEqual(Set.of(2,3,4,5,6,7));
+  });
+
+  it('make a new Set without the first item', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const newSet = set.rest();
+    expect(newSet).toEqual(Set.of(2,3,4,5,6,7,8,9,10));
+  });
+
+  it('make a new Set without the last item', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const newSet = set.butLast();
+    expect(newSet).toEqual(Set.of(1,2,3,4,5,6,7,8,9));
+  });
+
+  it('make a new Set without the first 4 items', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const newSet = set.skip(4);
+    expect(newSet).toEqual(Set.of(5,6,7,8,9,10));
+  });
+
+  it('make a new Set without the last 5 items', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const newSet = set.skipLast(5);
+    expect(newSet).toEqual(Set.of(1,2,3,4,5));
+  });
+
+  it('make a new Set without items that less than 7', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const newSet = set.skipWhile(x => x < 7);
+    expect(newSet).toEqual(Set.of(7,8,9,10));
+  });
+
+  it('make a new Set only with items that greater than 6', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const newSet = set.skipUntil(x => x > 6);
+    expect(newSet).toEqual(Set.of(7,8,9,10));
+  });
+
+  it('make a new Set only with the first 4 items', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const newSet = set.take(4);
+    expect(newSet).toEqual(Set.of(1,2,3,4));
+  });
+
+  it('make a new Set only with the last 2 items', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const newSet = set.takeLast(2);
+    expect(newSet).toEqual(Set.of(9,10));
+  });
+
+  it('make a new Set without items that greater than 3', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const newSet = set.takeWhile(x => x < 4);
+    expect(newSet).toEqual(Set.of(1,2,3));
+  });
+
+  it('make a new Set only with items that less than 10', () => {
+    const set = Set.of(1,2,3,4,5,6,7,8,9,10);
+    const newSet = set.takeUntil(x => x > 9);
+    expect(newSet).toEqual(Set.of(1,2,3,4,5,6,7,8,9));
+  });
+
   it('can use union in a withMutation', () => {
     const js = Set()
       .withMutations(set => {
