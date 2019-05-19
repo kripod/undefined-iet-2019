@@ -384,4 +384,41 @@ describe('Set', () => {
       });
     });
   });
+
+  describe('get', () => {
+    it('gets any index', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5);
+      expect(set.get(4)).toBe(4);
+    });
+  
+    it('gets first', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5);
+      expect(set.first()).toBe(0);
+    });
+  
+    it('gets last', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5);
+      expect(set.last()).toBe(5);
+    });
+    
+    it('gets first after reversing', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5).reverse();
+      expect(set.first()).toBe(5);
+    });
+  
+    it('gets last after reversing', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5).reverse();
+      expect(set.last()).toBe(0);
+    });
+    
+    it('gets first when size is unknown', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5).filter(x => x % 2 === 1);
+      expect(set.first()).toBe(1);
+    });
+  
+    it('gets last when size is unknown', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5).filter(x => x % 2 === 1);
+      expect(set.last()).toBe(5); // Note: this is O(N)
+    });
+  });
 });
