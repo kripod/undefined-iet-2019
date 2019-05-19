@@ -307,15 +307,26 @@ describe('Set', () => {
 
   it('group even and odd numbers', () => {
     const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-    const grpby = set.groupBy(x => x % 2 === 0).toMap().toArray().toString();
+    const grpby = set
+      .groupBy(x => x % 2 === 0)
+      .toMap()
+      .toArray()
+      .toString();
     expect(grpby).toEqual(
-      Map({ false: Set.of(1, 3, 5, 7, 9), true: Set.of(2, 4, 6, 8, 10) }).toArray().toString()
+      Map({ false: Set.of(1, 3, 5, 7, 9), true: Set.of(2, 4, 6, 8, 10) })
+        .toArray()
+        .toString()
     );
   });
 
   it('can use multiple add in a withMutation', () => {
     const set1 = Set();
-    const set2 = set1.withMutations(set => set.add(1).add(2).add(3));
+    const set2 = set1.withMutations(set =>
+      set
+        .add(1)
+        .add(2)
+        .add(3)
+    );
     expect(set1.size === 0);
     expect(set2.size === 3);
     expect(set2).toEqual(Set.of(1, 2, 3));
@@ -434,13 +445,13 @@ describe('Set', () => {
     expect(isAllEven).toEqual(true);
   });
 
-  it('join Set\'s values as a string (default separator)', () => {
+  it("join Set's values as a string (default separator)", () => {
     const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
     const output = set.join();
     expect(output).toEqual('1,2,3,4,5,6,7,8,9,10');
   });
 
-  it('join Set\'s values as a string ( ; separator)', () => {
+  it("join Set's values as a string ( ; separator)", () => {
     const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
     const output = set.join(';');
     expect(output).toEqual('1;2;3;4;5;6;7;8;9;10');
@@ -460,8 +471,15 @@ describe('Set', () => {
 
   it('count odd elements of a Set', () => {
     const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-    const count = set.countBy(x => x % 2 === 1).toArray().toString();
-    expect(count).toEqual(Map({ true: 5, false: 5 }).toArray().toString());
+    const count = set
+      .countBy(x => x % 2 === 1)
+      .toArray()
+      .toString();
+    expect(count).toEqual(
+      Map({ true: 5, false: 5 })
+        .toArray()
+        .toString()
+    );
   });
 
   it('can use union in a withMutation', () => {
