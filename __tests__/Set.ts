@@ -305,6 +305,165 @@ describe('Set', () => {
     expect(is(s1, v1)).toBe(false);
   });
 
+  it('group even and odd numbers', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const grpby = set.groupBy(x => x % 2 === 0).toMap().toArray().toString();
+    expect(grpby).toEqual(
+      Map({ false: Set.of(1, 3, 5, 7, 9), true: Set.of(2, 4, 6, 8, 10) }).toArray().toString()
+    );
+  });
+
+  it('can use multiple add in a withMutation', () => {
+    const set1 = Set();
+    const set2 = set1.withMutations(set => set.add(1).add(2).add(3));
+    expect(set1.size === 0);
+    expect(set2.size === 3);
+    expect(set2).toEqual(Set.of(1, 2, 3));
+  });
+
+  it('ordering when converts to Seq', () => {
+    const set = Set.of(10, 2, 9, 4, 8, 6, 7, 5, 1, 3);
+    const seqFromSet = set.toSeq().toArray();
+    expect(seqFromSet).toEqual(Seq([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).toArray());
+  });
+
+  it('add key in toMap conversion', () => {
+    const set = Set.of('apple', 'banana', 'carrot');
+    const map = Map({ apple: 'apple', banana: 'banana', carrot: 'carrot' });
+    const mapFromSet = set.toMap();
+    expect(mapFromSet).toEqual(map);
+  });
+
+  it('slice a portion from a Set', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const portion = set.slice(1, 7);
+    expect(portion).toEqual(Set.of(2, 3, 4, 5, 6, 7));
+  });
+
+  it('make a new Set without the first item', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const newSet = set.rest();
+    expect(newSet).toEqual(Set.of(2, 3, 4, 5, 6, 7, 8, 9, 10));
+  });
+
+  it('make a new Set without the last item', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const newSet = set.butLast();
+    expect(newSet).toEqual(Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9));
+  });
+
+  it('make a new Set without the first 4 items', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const newSet = set.skip(4);
+    expect(newSet).toEqual(Set.of(5, 6, 7, 8, 9, 10));
+  });
+
+  it('make a new Set without the last 5 items', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const newSet = set.skipLast(5);
+    expect(newSet).toEqual(Set.of(1, 2, 3, 4, 5));
+  });
+
+  it('make a new Set without items that less than 7', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const newSet = set.skipWhile(x => x < 7);
+    expect(newSet).toEqual(Set.of(7, 8, 9, 10));
+  });
+
+  it('make a new Set only with items that greater than 6', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const newSet = set.skipUntil(x => x > 6);
+    expect(newSet).toEqual(Set.of(7, 8, 9, 10));
+  });
+
+  it('make a new Set only with the first 4 items', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const newSet = set.take(4);
+    expect(newSet).toEqual(Set.of(1, 2, 3, 4));
+  });
+
+  it('make a new Set only with the last 2 items', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const newSet = set.takeLast(2);
+    expect(newSet).toEqual(Set.of(9, 10));
+  });
+
+  it('make a new Set without items that greater than 3', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const newSet = set.takeWhile(x => x < 4);
+    expect(newSet).toEqual(Set.of(1, 2, 3));
+  });
+
+  it('make a new Set only with items that less than 10', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const newSet = set.takeUntil(x => x > 9);
+    expect(newSet).toEqual(Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9));
+  });
+
+  it('reduce a Set from left', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const reducedSet = set.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, 0);
+    expect(reducedSet).toEqual(55);
+  });
+
+  it('reduce a Set from right', () => {
+    const set = Set.of('t', 'a', 'e', 'r', 'g');
+    const reducedSet = set.reduceRight((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, '');
+    expect(reducedSet).toEqual('great');
+  });
+
+  it('every elements are even', () => {
+    const set = Set.of(0, 2, 4, 6, 8, 10);
+    const isAllEven = set.every(x => x % 2 === 0);
+    expect(isAllEven).toEqual(true);
+  });
+
+  it('not all elements are even', () => {
+    const set = Set.of(0, 1, 2, 4, 6, 8, 10);
+    const isAllEven = set.every(x => x % 2 === 0);
+    expect(isAllEven).toEqual(false);
+  });
+
+  it('some elements are odd', () => {
+    const set = Set.of(0, 1, 2, 4, 6, 8, 10);
+    const isAllEven = set.some(x => x % 2 === 1);
+    expect(isAllEven).toEqual(true);
+  });
+
+  it('join Set\'s values as a string (default separator)', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const output = set.join();
+    expect(output).toEqual('1,2,3,4,5,6,7,8,9,10');
+  });
+
+  it('join Set\'s values as a string ( ; separator)', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const output = set.join(';');
+    expect(output).toEqual('1;2;3;4;5;6;7;8;9;10');
+  });
+
+  it('test an empty Set', () => {
+    const set = Set();
+    const isEmpty = set.isEmpty();
+    expect(isEmpty).toEqual(true);
+  });
+
+  it('count elements of a Set', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const count = set.count();
+    expect(count).toEqual(10);
+  });
+
+  it('count odd elements of a Set', () => {
+    const set = Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    const count = set.countBy(x => x % 2 === 1).toArray().toString();
+    expect(count).toEqual(Map({ true: 5, false: 5 }).toArray().toString());
+  });
+
   it('can use union in a withMutation', () => {
     const js = Set()
       .withMutations(set => {
@@ -482,6 +641,43 @@ describe('Set', () => {
         expect(testSet2.size).toEqual(2);
         expect(testSet3.size).toEqual(2);
       });
+    });
+  });
+
+  describe('get', () => {
+    it('gets any index', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5);
+      expect(set.get(4)).toBe(4);
+    });
+
+    it('gets first', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5);
+      expect(set.first()).toBe(0);
+    });
+
+    it('gets last', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5);
+      expect(set.last()).toBe(5);
+    });
+
+    it('gets first after reversing', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5).reverse();
+      expect(set.first()).toBe(5);
+    });
+
+    it('gets last after reversing', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5).reverse();
+      expect(set.last()).toBe(0);
+    });
+
+    it('gets first when size is unknown', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5).filter(x => x % 2 === 1);
+      expect(set.first()).toBe(1);
+    });
+
+    it('gets last when size is unknown', () => {
+      const set = Set.of(0, 1, 2, 3, 4, 5).filter(x => x % 2 === 1);
+      expect(set.last()).toBe(5); // Note: this is O(N)
     });
   });
 });
