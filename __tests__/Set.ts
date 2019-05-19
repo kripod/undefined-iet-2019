@@ -323,6 +323,66 @@ describe('Set', () => {
     expect(set.clear().size).toBe(0);
   });
 
+  it('can find the value defined by predicate', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.find(x => x === 2)).toBe(2);
+  });
+
+  it('can find the last value defined by predicate', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.findLast(x => x % 2 === 0)).toBe(4);
+  });
+
+  it('can find the entry defined by predicate', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.findEntry(x => x === 2)).toEqual([2, 2]);
+  });
+
+  it('can find the last entry defined by predicate', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.findLastEntry(x => x % 2 === 0)).toEqual([4, 4]);
+  });
+
+  it('can find the key defined by predicate', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.findKey(x => x === 2)).toBe(2);
+  });
+
+  it('can find the last key defined by predicate', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.findLastKey(x => x % 2 === 0)).toBe(4);
+  });
+
+  it('can find the key associated with a value', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.keyOf(x => x === 2)).toBe(undefined);
+  });
+
+  it('can find the last key associated with a value', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.lastKeyOf(x => x === 2)).toBe(undefined);
+  });
+
+  it('can find the max value', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.max()).toBe(5);
+  });
+
+  it('can find the max value with the help of a comparator', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.maxBy(x => x)).toBe(5);
+  });
+
+  it('can find the min value', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.min()).toBe(1);
+  });
+
+  it('can find the min value with the help of a comparator', () => {
+    const set = Set([1, 2, 3, 4, 5]);
+    expect(set.minBy(x => x)).toBe(1);
+  });
+
   describe('"size" should correctly reflect the number of elements in a Set', () => {
     describe('deduplicating custom classes that invoke fromJS() as part of equality check', () => {
       class Entity {
